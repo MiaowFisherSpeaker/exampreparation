@@ -1,0 +1,216 @@
+{
+    "ASCII小写转成大写":"
+for ch in 'helloworld':
+    print(chr(ord(ch)-32),end = ' ')#减去32变为大写ASCII",
+    
+    "判断质数":"
+def isprime(n):
+    '''
+    判断是否为质数
+    n:大于等于2的自然数
+    '''
+    for i in range(2,int(n**0.5)+1):
+        if n%i==0:
+            return 0
+    return 1",
+    
+    "判断闰年":"
+def isLeapYear(year): 
+    '''
+    判断year年是否闰年
+    '''
+    if (year % 400 == 0) or (year % 4 ==0 and year % 100 != 0):
+        return True#是闰年
+    else:
+        return False#不是闰年
+    return isLeapYear  ",
+
+    "判断完数":"
+def isPerfect(n):
+    global isPerfect_ls#定义全局变量，储存完数的因子
+    s = n
+    isPerfect_ls = []#寻找因子
+    for i in range(1,n):
+        if n % i == 0:
+            s -= i
+            isPerfect_ls.append(i)
+    return 1 if s == 0 else 0",
+
+    "最大公因数":"
+def gcd(a,b):
+    '''
+    a,b:均为正整数
+    采用辗转相除法
+    比如6,8
+    step1:
+        a,b = 6,8
+    step2:判断大小使得a更大
+        a,b = 8,6
+    step3:mod(a,b)
+        a%b = 2
+    step4:用上次的除数取模上次的余数
+        6%2 = 0
+    step5:最后一次取模为0则上一步的除数为最大公约数
+    '''
+    #判断大小
+    if a<b:
+        a,b = b,a
+    #辗转相除法
+    s = a % b #定义取模的余数
+    while s != 0:#循环直至取模等于0
+        a,b = b,s
+        s = a % b
+    return b#最后一次取模的除数为最大公因数",
+
+    "最小公倍数":"
+def gcd(a,b):
+    #判断大小
+    if a<b:
+        a,b = b,a
+    #辗转相除法
+    s = a % b #定义取模的余数
+    while s != 0:#循环直至取模等于0
+        a,b = b,s
+        s = a % b
+    return b#最后一次取模的除数为最大公因数
+
+def gbs(m,n):
+    return m*n//gcd(m,n)",
+
+    "三角形面积":"
+def TriArea(a,b,c):
+    import math
+    p = (a+b+c)/2
+    Tri_area = math.sqrt(p*(p-a)*(p-b)*(p-c))
+    return Tri_area",
+
+    "输出小于N的完数":"
+N = eval(input())
+def isPrime(n):          #判断素数的函数
+    if n < 2:
+        return False     #0和1不是素数
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    else:
+        return True
+def isPerfect(m):
+    if isPrime(m) and isPrime(2**m-1):
+        s = 2**(m-1)*(2**m-1)
+        return s
+    else:
+        return False",
+
+    "杨辉三角形":"
+num = eval(input())
+list1 = []
+for n in range(num):
+    row = [1]
+    if n == 0:
+        print(row)
+        list1.append(row)#下一行的列表初始化保持首位为1
+        continue
+    for m in range(1,n):
+        row.append(list1[n-1][m-1]+list1[n-1][m])
+    row.append(1)#最后一个加上1
+    list1.append(row)
+    print(row)",
+
+    "英文词频统计":"
+WordStr= ''
+#归一化处理
+WordStr = WordStr.lower()
+for ch in '.，~！@#$%^&*()+_/。、？,':
+    WordStr=WordStr.replace(ch,' ')   
+print(WordStr)
+
+#分割字符串为列表
+WordList = WordStr.split()
+print(WordList)
+
+#通过字典对列表进行词频统计
+word_dict = {}
+for key in WordList:
+    if key in word_dict:
+        word_dict[key]+=1
+    else:
+        word_dict[key] = 1
+print(word_dict)
+#对字典排序
+word_ls = list(word_dict.items())
+word_ls.sort(key = lambda x:x[1],reverse = True)
+#word_ls = sorted(iterable,key,reverse)也行
+print(word_ls)
+
+#直接进行排序
+word_sorted_list = sorted(word_dict.items(),key=lambda x:x[1], reverse = True)
+print(word_sorted_list[0][0])",
+
+   "判断三角形":"
+def IsTriange(a,b,c):    
+#函数说明
+    #   根据参数值判断是否是三角形的函数
+    #   :param a:三角形一条边的长度
+    #   :param b:三角形一条边的长度
+    #   :param c:三角形一条边的长度
+    #   :return: 0或1 
+    
+#程序代码已经给出请认真阅读   
+##########begin################    
+    t1=(a+b)>c and (a+c)>b and (b+c)>a
+    t2=(a-c)<b and (a-b)<c and (b-c)<a
+    if ( t1 and t2):
+        return 1
+    else:
+        return 0   ",
+    
+    "水仙花数":"
+def isflower(x):
+    # 函数说明：
+    #参数 x为一个3位数
+    #返回值为1或0
+####### Begin #########
+    s = 0
+    for i in list(str(x)):
+        s += int(i)**3
+        #print(f'{s}')
+    if s == x:
+        return 1
+    else:
+        return 0",
+    
+    "斐波那切数列":"
+def fibNumber(n) :
+    #函数说明
+    #参数n为第n项斐波那契数,第1,2项为1,1
+    #返回第n项值 
+    #********** Begin ********** #
+    pre,re = 1,1
+    if n == 1 or n == 2:
+        return 1
+    else:
+        for i in range(n-2):
+            pre,re = re,pre+re
+            # print(f'{pre},{re}')
+        return re",
+        
+    "约瑟夫问题":"
+#n代表总人数,m代表出圈间隔序号数
+n,m=eval(input())
+result=[] #出圈列表
+#########begin############## 
+lb = list(range(1,n+1))
+k = 1
+while lb != []:
+    #print(f'{lb[0]}开头')
+    if k==m:    
+        num = lb.pop(0)
+        result.append(num)
+        k=1
+    else:
+        lb = lb[1:]+[lb[0]]
+        k+=1"
+
+    
+
+}
